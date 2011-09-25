@@ -24,6 +24,9 @@ function enforceSummary() {
     var minoredit_input = document.getElementById('minoredit');
     var disabled = false;
  
+    // always require summary, even when minor change option is checked
+    // if(summary_input.value.replace(/^\s+/,"") === '') 
+    
     if(summary_input.value.replace(/^\s+/,"") === '' && !minoredit_input.checked) {
         disabled = true;
     }
