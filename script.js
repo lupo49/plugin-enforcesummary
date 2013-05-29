@@ -12,7 +12,7 @@ jQuery(function() {
     $summary.keyup(enforceSummary).focus(enforceSummary);
     $minoredit.change(enforceSummary);
     enforceSummary(); // summary may be there if we're previewing
-})
+});
 
 function enforceSummary() {
     var $summary = jQuery('#edit__summary'); // get summary field
