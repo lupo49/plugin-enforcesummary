@@ -8,6 +8,12 @@ jQuery(function() {
     var $summary = jQuery('#edit__summary'); // get summary field
     var $minoredit = jQuery('#minoredit');
 
+    // Minor Edit by default
+    // Parts copied from https://www.dokuwiki.org/tips:autominor
+    var prv = jQuery('div.preview');
+    if (!prv[0] && JSINFO.plugin_enforcesummary.default_minoredit)
+        jQuery('#minoredit').prop('checked', true);
+
     // Parts copied from https://www.dokuwiki.org/tips:summary_enforcement
     $summary.keyup(enforceSummary).focus(enforceSummary);
     $minoredit.change(enforceSummary);
