@@ -10,9 +10,11 @@ jQuery(function() {
 
     // Minor Edit by default
     // Parts copied from https://www.dokuwiki.org/tips:autominor
-    var prv = jQuery('div.preview');
-    if (!prv[0] && JSINFO.plugin_enforcesummary.default_minoredit)
-        jQuery('#minoredit').prop('checked', true);
+    if(typeof $minoredit.val() != 'undefined') {
+        var prv = jQuery('div.preview');
+        if (!prv[0] && JSINFO.plugin_enforcesummary.default_minoredit)
+            jQuery('#minoredit').prop('checked', true);
+    } else return;
 
     // Parts copied from https://www.dokuwiki.org/tips:summary_enforcement
     $summary.keyup(enforceSummary).focus(enforceSummary);
