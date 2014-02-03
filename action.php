@@ -31,7 +31,9 @@ class action_plugin_enforcesummary extends DokuWiki_Action_Plugin {
         global $JSINFO;
 
         $JSINFO['plugin_enforcesummary'] = array(
-                'default_minoredit'   => $this->getConf('default_minoredit'),
+                'enforce_summary'    => $this->getConf('enforce_summary'),
+                'default_minoredit'  => $this->getConf('default_minoredit'),
+                'enforce_preview'    => $this->getConf('enforce_preview'),
             );
     }
 }
