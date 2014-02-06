@@ -21,6 +21,7 @@ class action_plugin_enforcesummary extends DokuWiki_Action_Plugin {
     // register hook
     function register(&$controller) {
         $controller->register_hook('DOKUWIKI_STARTED', 'AFTER', $this, '_exportToJSINFO');
+        $controller->register_hook('HTML_EDITFORM_OUTPUT', 'BEFORE', $this, '_append_edit_guide');
     }
 
     /**
@@ -35,5 +36,16 @@ class action_plugin_enforcesummary extends DokuWiki_Action_Plugin {
                 'default_minoredit'  => $this->getConf('default_minoredit'),
                 'enforce_preview'    => $this->getConf('enforce_preview'),
             );
+    }
+
+    /**
+     * Append Edit Guide in the Edit Window (below save button)
+     */
+    function _append_edit_guide(&$event) {
+        $pos = $event->data->findElementByAttribute('class', 'editButtons');
+        if (!$pos) return; // no editButtons
+        $guidance = $this->locale_xhtml('edit_guide');
+        $html = '<div id="plugin_enforcesummary_wrapper">'.$guidance.'</div>';
+        $event->data->addElement($html);
     }
 }
