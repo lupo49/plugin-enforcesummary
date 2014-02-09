@@ -1,0 +1,7 @@
+div#plugin_enforcesummary_wrapper {
+    font-size: 85%;
+    /* border: 1px solid #ccc; */
+}
+div#plugin_enforcesummary_wrapper .li {
+    color: #cc9999 !important;
+}
