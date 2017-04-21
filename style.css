@@ -5,3 +5,8 @@ div#plugin_enforcesummary_wrapper {
 div#plugin_enforcesummary_wrapper .li {
     color: #cc9999 !important;
 }
+
+.plugin_enforcesummary_missing {
+    background-color:  #ffcccc;
+}
+
