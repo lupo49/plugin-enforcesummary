@@ -26,12 +26,11 @@ function enforceSummary() {
     var $minoredit = jQuery('#minoredit');
     var ckgd =  jQuery( "input[type=checkbox][name=ckgdoku]:checked" ).val();
     var ckge =  jQuery( "input[type=checkbox][name=ckgedit]:checked" ).val();
-    var m_class;
+    var m_class, $savebutton;
     if(typeof ckgd == 'string' || typeof ckge == 'string') {       
-        var $savebutton = jQuery("#save_button");
+        $savebutton = jQuery("#save_button");
         m_class = "plugin_enforcesummary_missing";
-    }
-    else {
+    } else {
         $savebutton = jQuery("#edbtn__save");
         m_class = "missing"
         
