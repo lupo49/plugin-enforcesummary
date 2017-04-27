@@ -24,7 +24,17 @@ jQuery(function() {
 function enforceSummary() {
     var $summary = jQuery('#edit__summary'); // get summary field
     var $minoredit = jQuery('#minoredit');
-    var $savebutton = jQuery("#edbtn__save");
+    var ckgd =  jQuery( "input[type=checkbox][name=ckgdoku]:checked" ).val();
+    var ckge =  jQuery( "input[type=checkbox][name=ckgedit]:checked" ).val();
+    var m_class, $savebutton;
+    if(typeof ckgd == 'string' || typeof ckge == 'string') {       
+        $savebutton = jQuery("#save_button");
+        m_class = "plugin_enforcesummary_missing";
+    } else {
+        $savebutton = jQuery("#edbtn__save");
+        m_class = "missing"
+        
+    }
     var prv = jQuery('div.preview');
 
     // always require summary, even when minor change option is checked
@@ -35,11 +45,11 @@ function enforceSummary() {
 
     // set summary inputbox attribute
     if (summary_filled) {
-        $summary.removeClass("missing");
+        $summary.removeClass(m_class);
     } else {
-        $summary.addClass("missing");
+        $summary.addClass(m_class);
     }
-
+    
     // set save button attribute
     save_ready = false;
     if (JSINFO.plugin_enforcesummary.enforce_summary) {
