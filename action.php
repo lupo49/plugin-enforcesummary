@@ -13,6 +13,7 @@ class action_plugin_enforcesummary extends DokuWiki_Action_Plugin
     public function register(Doku_Event_Handler $controller)
     {
         $controller->register_hook('DOKUWIKI_STARTED', 'AFTER', $this, 'exportToJSINFO');
+        $controller->register_hook('FORM_EDIT_OUTPUT', 'BEFORE', $this, 'appendEditGuide');
         $controller->register_hook('HTML_EDITFORM_OUTPUT', 'BEFORE', $this, 'appendEditGuide');
     }
 
@@ -35,10 +36,21 @@ class action_plugin_enforcesummary extends DokuWiki_Action_Plugin
      */
     public function appendEditGuide(Doku_Event $event)
     {
-        $pos = $event->data->findElementByAttribute('class', 'editButtons');
-        if (!$pos) return; // no editButtons
         $guidance = $this->locale_xhtml('edit_guide');
         $html = '<div id="plugin_enforcesummary_wrapper">'.$guidance.'</div>';
-        $event->data->addElement($html);
+
+        $form =& $event->data;
+        if (($event->name == 'FORM_EDIT_OUTPUT')
+            && (($pos = $form->findPositionByAttribute('id', 'edit__minoredit')) !== false)
+        ) {
+            // applicable to development snapshot 2020-10-13 or later
+            // insert the edit guide after minor edit checkbox
+            $form->addHTML($html, ++$pos);
+
+        } elseif ($event->name == 'HTML_EDITFORM_OUTPUT') {
+            $pos = $form->findElementByAttribute('class', 'editButtons');
+            if (!$pos) return; // no editButtons
+            $form->addElement($html);
+        }
     }
 }
