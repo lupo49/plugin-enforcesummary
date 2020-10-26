@@ -2,6 +2,6 @@ base   enforcesummary
 author Matthias Schulte
 email  dokuwiki@lupo49.de
 date   2014-02-09
-name   enforcesummary plugin
+name   EnforceSummary plugin
 desc   Enforce summary or minor change on all edits
-url    http://www.dokuwiki.org/plugin:enforcesummary
+url    https://www.dokuwiki.org/plugin:enforcesummary

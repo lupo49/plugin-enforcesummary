@@ -1,7 +1,7 @@
 /*
  enforcesummary plugin for DokuWiki
  File: script.js
- http://www.dokuwiki.org/plugin:enforcesummary
+ https://www.dokuwiki.org/plugin:enforcesummary
  */
 
 jQuery(function() {
@@ -10,10 +10,13 @@ jQuery(function() {
 
     // Minor Edit by default
     // Parts copied from https://www.dokuwiki.org/tips:autominor
-    var $minoredit = jQuery('#minoredit');
+    // Note: since DokuWiki 2020-10-13 snapshot, the id of minoredit checkbox
+    //       has changed to "edit__minoredit" from "minoredit".
+    //       We must find '#edit__minoredit" or '#minoredit' for compatibility.
+    var $minoredit = jQuery('#edit__minoredit,#minoredit');
     var prv = jQuery('div.preview');
     if (!prv[0] && JSINFO.plugin_enforcesummary.default_minoredit)
-        jQuery('#minoredit').prop('checked', true);
+        jQuery('#edit__minoredit,#minoredit').prop('checked', true);
 
     // Parts copied from https://www.dokuwiki.org/tips:summary_enforcement
     $summary.keyup(enforceSummary).focus(enforceSummary);
@@ -23,16 +26,16 @@ jQuery(function() {
 
 function enforceSummary() {
     var $summary = jQuery('#edit__summary'); // get summary field
-    var $minoredit = jQuery('#minoredit');
-    var ckgd =  jQuery( "input[type=checkbox][name=ckgdoku]:checked" ).val();
-    var ckge =  jQuery( "input[type=checkbox][name=ckgedit]:checked" ).val();
+    var $minoredit = jQuery('#edit__minoredit,#minoredit');
+    var ckgd =  jQuery( 'input[type="checkbox"][name="ckgdoku"]:checked' ).val();
+    var ckge =  jQuery( 'input[type="checkbox"][name="ckgedit"]:checked' ).val();
     var m_class, $savebutton;
-    if(typeof ckgd == 'string' || typeof ckge == 'string') {       
-        $savebutton = jQuery("#save_button");
-        m_class = "plugin_enforcesummary_missing";
+    if (typeof ckgd == 'string' || typeof ckge == 'string') {
+        $savebutton = jQuery('#save_button');
+        m_class = 'plugin_enforcesummary_missing';
     } else {
-        $savebutton = jQuery("#edbtn__save");
-        m_class = "missing"
+        $savebutton = jQuery('#edbtn__save');
+        m_class = 'missing'
         
     }
     var prv = jQuery('div.preview');
