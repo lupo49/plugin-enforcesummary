@@ -1,1 +1,1 @@
-  *//Info: Die Speichern-Funktion kann deaktiviert sein, wenn das Feld "Zusammenfassung" leer ist oder die Änderung nicht per Vorschau überprüft wurde.//
+  *//Info: Die Speichern-Funktion kann deaktiviert sein, wenn das Feld "Zusammenfassung" leer ist oder die Ã„nderung nicht per Vorschau Ã¼berprÃ¼ft wurde.//
